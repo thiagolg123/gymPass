@@ -1,7 +1,7 @@
-Ol· :)
+Ol√° :)
 
-Para executar o programa basta buildar com o maven: mvn clean install;
+Para executar o programa basta buildar com o maven: mvn clean install, e java -jar, bem simples.
 Pode se configurar o caminho do arquivo de log em: FileConstants;
 Faltou alguns testes e somar o tempos total de cada piloto, acabei ficando sem tempo, mas acho que deu para monstrar alguma coisa;
-… claro que um refactor ficaria bem melhor... :s
+√â claro que um refactor ficaria bem melhor... :s
 Obrigado! :D
