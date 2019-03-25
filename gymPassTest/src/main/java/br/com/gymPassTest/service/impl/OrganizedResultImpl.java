@@ -2,7 +2,6 @@ package br.com.gymPassTest.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,7 +24,6 @@ public class OrganizedResultImpl implements OrganizedResult {
 	public List<RacingResult> organizeAsList(List<RacingStatus> listRunStatus) {
 		// if needed all laps
 		List<RacingStatus> organazedRacingStatus = new ArrayList<RacingStatus>();
-		List<LocalDateTime> listOfTimes = new ArrayList<LocalDateTime>();
 		List<RacingResult> racingResult = new ArrayList<RacingResult>();
 
 		for (int laps = 4; laps >= 1; laps--) {
@@ -34,7 +32,7 @@ public class OrganizedResultImpl implements OrganizedResult {
 					.filter(result -> result.getNumberOfLaps().intValue() == desCapslaps).collect(Collectors.toList()));
 		}
 
-		List<RacingStatus> listOfRSClassify = sortListClassify(organazedRacingStatus, listOfTimes);
+		List<RacingStatus> listOfRSClassify = sortListClassify(organazedRacingStatus);
 
 		int numberPosition = 1;
 		for (RacingStatus racingStatus : listOfRSClassify) {
@@ -53,15 +51,9 @@ public class OrganizedResultImpl implements OrganizedResult {
 
 	}
 
-	private List<RacingStatus> sortListClassify(List<RacingStatus> organazedRacingStatus,
-			List<LocalDateTime> listOfTimes) {
+	private List<RacingStatus> sortListClassify(List<RacingStatus> organazedRacingStatus) {
 		List<RacingStatus> listOfRSClassify = organazedRacingStatus.stream().filter(ors -> ors.getNumberOfLaps() == 4)
 				.collect(Collectors.toList());
-
-		for (RacingStatus racingStatus : listOfRSClassify) {
-			listOfTimes.add(racingStatus.getHours());
-		}
-		Collections.sort(listOfTimes);
 
 		listOfRSClassify.add(getLastPosition(organazedRacingStatus).get());
 		listOfRSClassify.sort((RacingStatus o1, RacingStatus o2) -> o1.getHours().compareTo(o2.getHours()));
