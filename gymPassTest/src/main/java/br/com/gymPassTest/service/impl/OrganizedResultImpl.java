@@ -12,7 +12,7 @@ import br.com.gymPassTest.vo.RacingResult;
 import br.com.gymPassTest.vo.RacingStatus;
 /*
  * A partir de um input de um arquivo de log do formato acima, montar o
- * resultado da corrida com as seguintes informações: Posição Chegada, Código
+ * resultado da corrida com as seguintes informaÃ§Ãµes: PosiÃ§Ã£o Chegada, CÃ³digo
  * Piloto, Nome Piloto, Qtde Voltas Completadas e Tempo Total de Prova.
  * 
  * A corrida termina quando o primeiro colocado completa 4 voltas - OK
@@ -57,10 +57,6 @@ public class OrganizedResultImpl implements OrganizedResult {
 			List<LocalDateTime> listOfTimes) {
 		List<RacingStatus> listOfRSClassify = organazedRacingStatus.stream().filter(ors -> ors.getNumberOfLaps() == 4)
 				.collect(Collectors.toList());
-
-		for (RacingStatus racingStatus : listOfRSClassify) {
-			listOfTimes.add(racingStatus.getHours());
-		}
 
 		for (RacingStatus racingStatus : listOfRSClassify) {
 			listOfTimes.add(racingStatus.getHours());
